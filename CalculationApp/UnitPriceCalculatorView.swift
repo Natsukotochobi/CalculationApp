@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct UnitPriceCalculatorView: View {
+    
     @State var totalPrice: String = "" //合計金額
-    @State var quantity: String = "" //何個か
+    @State var quantity: String = "" //何個入りか
+    
+    func unitPrice() -> Int {
+        if let totalPriceNum = Double(totalPrice),
+           let quantityNum = Double(quantity) {
+            let result = Int(totalPriceNum / quantityNum)
+            return result
+        } else {
+            return -1
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -25,7 +36,8 @@ struct UnitPriceCalculatorView: View {
                     TextField("0", text: $totalPrice)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
-                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                        .frame(width: 100)
+                        
                 } // HStack
                 .frame(width: 200)
                 
@@ -35,16 +47,22 @@ struct UnitPriceCalculatorView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
                         .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                        
                 } // HStack
                 .frame(width: 200)
                 .padding()
                 
-                Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
+                Text("1個：\(unitPrice())円")
                     .padding(.horizontal,0)
                 
             } // VStack
+           
         } //ZStack
+        
     } // body
+            
+  
+    
 } // UnitPriceCalculatorView
 
 #Preview {
