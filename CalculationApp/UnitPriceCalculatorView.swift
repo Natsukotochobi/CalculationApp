@@ -28,6 +28,13 @@ struct UnitPriceCalculatorView: View {
                 .ignoresSafeArea()
             
             VStack {
+                
+                Image(systemName: "cart")
+                    .resizable(resizingMode: .stretch)
+                    .frame(width: 120.0, height: 120.0)
+                    .padding(.bottom,100.0)
+                    .foregroundColor(.green)
+                
                 Text("単価計算します")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 
@@ -53,6 +60,7 @@ struct UnitPriceCalculatorView: View {
                 .padding()
                 
                 Text("1個：\(unitPrice())円")
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .padding(.horizontal,0)
                 
             } // VStack

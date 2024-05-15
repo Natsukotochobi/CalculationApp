@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3481EB42BF311D2006CE0C4 /* TaxCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3481EB32BF311D2006CE0C4 /* TaxCalculatorView.swift */; };
 		E39CA4872BEDE77000CCA470 /* CalculationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39CA4862BEDE77000CCA470 /* CalculationAppApp.swift */; };
 		E39CA4892BEDE77000CCA470 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39CA4882BEDE77000CCA470 /* ContentView.swift */; };
 		E39CA48B2BEDE77100CCA470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39CA48A2BEDE77100CCA470 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E3481EB32BF311D2006CE0C4 /* TaxCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxCalculatorView.swift; sourceTree = "<group>"; };
 		E39CA4832BEDE77000CCA470 /* CalculationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalculationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39CA4862BEDE77000CCA470 /* CalculationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationAppApp.swift; sourceTree = "<group>"; };
 		E39CA4882BEDE77000CCA470 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 				E39CA4862BEDE77000CCA470 /* CalculationAppApp.swift */,
 				E39CA4882BEDE77000CCA470 /* ContentView.swift */,
 				E39CA4942BEDED2500CCA470 /* UnitPriceCalculatorView.swift */,
+				E3481EB32BF311D2006CE0C4 /* TaxCalculatorView.swift */,
 				E39CA48A2BEDE77100CCA470 /* Assets.xcassets */,
 				E39CA48C2BEDE77100CCA470 /* Preview Content */,
 			);
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3481EB42BF311D2006CE0C4 /* TaxCalculatorView.swift in Sources */,
 				E39CA4892BEDE77000CCA470 /* ContentView.swift in Sources */,
 				E39CA4952BEDED2500CCA470 /* UnitPriceCalculatorView.swift in Sources */,
 				E39CA4872BEDE77000CCA470 /* CalculationAppApp.swift in Sources */,

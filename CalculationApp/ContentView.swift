@@ -13,14 +13,16 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            Text("ホーム")
+            
+            TaxCalculatorView()
                 .tabItem {
-                    Label("HOME", systemImage: "house")
+                    Label("税金計算", systemImage: "percent")
                 }.tag(1)
+                .focused($isInputActive)
             
             UnitPriceCalculatorView()
                 .tabItem {
-                    Label("単価計算", systemImage: "sun.max")
+                    Label("単価計算", systemImage: "cart")
                 }.tag(2)
                 .focused($isInputActive)
         } // TabView
