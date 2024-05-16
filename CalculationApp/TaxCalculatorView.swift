@@ -54,9 +54,20 @@ struct TaxCalculatorView: View {
                         .keyboardType(.numberPad)
                         .frame(width: 100)
                     
+                    Button(action: {
+                        withoutTax = ""
+                        taxIncluded = 0
+                    }, label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .resizable(resizingMode: .stretch)
+                            .frame(width: 15.0, height: 15.0)
+                            .foregroundColor(.red)
+                    })
                 } // HStack
                 .frame(width: 200)
                 .padding()
+                
+                
                 
                 HStack {
                     Button(action: {
@@ -76,9 +87,16 @@ struct TaxCalculatorView: View {
                 } // HStack
                 .padding()
                 
-                Text("税込：\(taxIncluded)円")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    .padding(.horizontal,0)
+                if (taxIncluded == -1) {
+                    Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .padding(.horizontal,0)
+                } else {
+                    Text("税込：\(taxIncluded)円")
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .padding(.horizontal,0)
+                }
+                
                     
                 
             } // VStack
@@ -102,3 +120,4 @@ struct RoundedButtonStyle: ButtonStyle {
 #Preview {
     TaxCalculatorView()
 }
+
