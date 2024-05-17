@@ -21,32 +21,6 @@ struct TaxCalculatorView: View {
         return false
     }
     
-    // 税率8％の計算をする
-  /*  func calculateTax8Percent() {
-        guard isValidInput(withoutTax) else {
-            errorMessage = "1以上の数を入力して下さい"
-            withoutTax = ""
-            return
-        }
-        if let withoutTaxNum = Double(withoutTax) {
-            let result = Int(withoutTaxNum * 1.08)
-            taxIncluded = result
-        }
-    }
-    
-    // 税率10％の計算をする
-    func calculateTax10Percent() {
-        guard isValidInput(withoutTax) else {
-            errorMessage = "1以上の数を入力して下さい"
-            withoutTax = ""
-            return
-        }
-        if let withoutTaxNum = Double(withoutTax) {
-            let result = Int(withoutTaxNum * 1.1)
-            taxIncluded = result
-        }
-    } */
-    
     // 税率を引数で受け取って計算をする
     func calculateTax(_ rate: Double) {
         guard isValidInput(withoutTax) else {
