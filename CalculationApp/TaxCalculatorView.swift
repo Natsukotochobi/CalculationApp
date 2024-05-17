@@ -22,7 +22,7 @@ struct TaxCalculatorView: View {
     }
     
     // 税率8％の計算をする
-    func calculateTax8Percent() {
+  /*  func calculateTax8Percent() {
         guard isValidInput(withoutTax) else {
             errorMessage = "1以上の数を入力して下さい"
             withoutTax = ""
@@ -45,6 +45,19 @@ struct TaxCalculatorView: View {
             let result = Int(withoutTaxNum * 1.1)
             taxIncluded = result
         }
+    } */
+    
+    // 税率を引数で受け取って計算をする
+    func calculateTax(_ rate: Double) {
+        guard isValidInput(withoutTax) else {
+            errorMessage = "1以上の数を入力して下さい"
+            withoutTax = ""
+            return
+        }
+        if let withoutTaxNum = Double(withoutTax) {
+            let result = Int(withoutTaxNum * rate)
+            taxIncluded = result
+        }
     }
     
     var body: some View {
@@ -56,7 +69,7 @@ struct TaxCalculatorView: View {
                 Image(systemName: "percent")
                     .resizable(resizingMode: .stretch)
                     .frame(width: 110.0, height: 110.0)
-                    .padding(.bottom,100.0)
+                    .padding(.bottom, 70.0)
                     .foregroundColor(.blue)
                 
                 Text("税込金額を計算します")
@@ -88,7 +101,7 @@ struct TaxCalculatorView: View {
                 HStack {
                     Button(action: {
                         errorMessage = nil
-                        calculateTax8Percent()
+                        calculateTax(1.08)
                     }, label: {
                         Text("8%")
                     })
@@ -96,7 +109,7 @@ struct TaxCalculatorView: View {
                     
                     Button(action: {
                         errorMessage = nil
-                        calculateTax10Percent()
+                        calculateTax(1.10)
                     }, label: {
                         Text("10%")
                     })
