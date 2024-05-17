@@ -10,8 +10,8 @@ import SwiftUI
 struct TaxCalculatorView: View {
     
     @State var withoutTax: String = "" //税抜き金額
-    @State var taxIncluded: Int = 0 // 計算結果を保持する
-    @State var errorMessage: String? = nil // 入力値が不正な場合のエラーメッセージを保持する
+    @State private var taxIncluded: Int = 0 // 計算結果を保持する
+    @State private var errorMessage: String? = nil // 入力値が不正な場合のエラーメッセージを保持
     
     // 入力値が不正でないか判定
     func isValidInput(_ input: String) -> Bool {
