@@ -13,6 +13,7 @@ struct UnitPriceCalculatorView: View {
     @State var quantity: String = "" //何個入りか
     @State var unitPrice: Int = 0 // 計算結果を保持する
     @State private var errorMessage: String? = nil //入力値が不正な場合のエラーメッセージを保持
+    var focused: FocusState<Bool>.Binding
     
     // 入力値が不正でないか判定
     func isValidInput(inputTotalPrice: String, inputQuantity: String) -> Bool {
@@ -57,6 +58,7 @@ struct UnitPriceCalculatorView: View {
                 HStack {
                     Text("合計金額：").padding(.horizontal, 0)
                     TextField("0", text: $totalPrice)
+                        .focused(focused.projectedValue, equals: true)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
                         .frame(width: 100)
@@ -67,6 +69,7 @@ struct UnitPriceCalculatorView: View {
                 HStack {
                     Text("個数：").padding(.horizontal,0)
                     TextField("0", text: $quantity)
+          //              .focused(focused.projectedValue, equals: true)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
                         .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
@@ -109,6 +112,14 @@ struct UnitPriceCalculatorView: View {
             } // VStack
            
         } //ZStack
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("閉じる") {
+                    focused.wrappedValue = false
+                }
+            }
+        } // toolbar
         
     } // body
             
@@ -116,6 +127,6 @@ struct UnitPriceCalculatorView: View {
     
 } // UnitPriceCalculatorView
 
-#Preview {
+/* #Preview {
     UnitPriceCalculatorView()
-}
+} */

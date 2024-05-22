@@ -9,31 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     @State var selection = 1
-    @FocusState var isInputActive: Bool
+    @FocusState var focused: Bool
     
     var body: some View {
         TabView(selection: $selection) {
             
-            TaxCalculatorView()
+            TaxCalculatorView(focused: $focused)
                 .tabItem {
                     Label("税金計算", systemImage: "percent")
                 }.tag(1)
-                .focused($isInputActive)
+    //            .focused($isInputActive)
             
-            UnitPriceCalculatorView()
+            UnitPriceCalculatorView(focused: $focused)
                 .tabItem {
                     Label("単価計算", systemImage: "cart")
                 }.tag(2)
-                .focused($isInputActive)
+    //            .focused($isInputActive)
         } // TabView
-        .toolbar {
+  /*      .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
                 Button("Done") {
-                    isInputActive = false
+                    focused = false
                 }
             }
-        } // toolbar
+        } // toolbar */
     } // body閉じる
 } // ContentView閉じる
 

@@ -12,6 +12,7 @@ struct TaxCalculatorView: View {
     @State var withoutTax: String = "" //税抜き金額
     @State private var taxIncluded: Int = 0 // 計算結果を保持する
     @State private var errorMessage: String? = nil // 入力値が不正な場合のエラーメッセージを保持
+    var focused: FocusState<Bool>.Binding
     
     // 入力値が不正でないか判定
     func isValidInput(_ input: String) -> Bool {
@@ -52,10 +53,11 @@ struct TaxCalculatorView: View {
                 HStack {
                     Text("税抜：").padding(.horizontal, 0)
                     TextField("0", text: $withoutTax)
+                        .focused(focused.projectedValue, equals: true)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
                         .frame(width: 100)
-                    
+                 
                     Button(action: {
                         withoutTax = ""
                         taxIncluded = 0
@@ -109,6 +111,14 @@ struct TaxCalculatorView: View {
             } // VStack
             
         } //ZStack
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("閉じる") {
+                    focused.wrappedValue = false
+                }
+            }
+        } // toolbar
         
     } // body
 } // TaxCalculatorView
@@ -124,7 +134,7 @@ struct RoundedButtonStyle: ButtonStyle {
     }
 }
 
-#Preview {
+/* #Preview {
     TaxCalculatorView()
-}
+} */
 
