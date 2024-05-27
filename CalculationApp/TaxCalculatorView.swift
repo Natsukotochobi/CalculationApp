@@ -78,6 +78,7 @@ struct TaxCalculatorView: View {
                     Button(action: {
                         errorMessage = nil
                         calculateTax(1.08)
+                        focused.wrappedValue = false
                     }, label: {
                         Text("8%")
                     })
@@ -86,6 +87,7 @@ struct TaxCalculatorView: View {
                     Button(action: {
                         errorMessage = nil
                         calculateTax(1.10)
+                        focused.wrappedValue = false
                     }, label: {
                         Text("10%")
                     })
@@ -111,14 +113,14 @@ struct TaxCalculatorView: View {
             } // VStack
             
         } //ZStack
-        .toolbar {
+     /*   .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
                 Button("閉じる") {
                     focused.wrappedValue = false
                 }
             }
-        } // toolbar
+        } // toolbar */
         
     } // body
 } // TaxCalculatorView

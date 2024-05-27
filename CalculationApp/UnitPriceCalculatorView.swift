@@ -69,7 +69,7 @@ struct UnitPriceCalculatorView: View {
                 HStack {
                     Text("個数：").padding(.horizontal,0)
                     TextField("0", text: $quantity)
-          //              .focused(focused.projectedValue, equals: true)
+                        .focused(focused.projectedValue, equals: true)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
                         .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
@@ -92,6 +92,8 @@ struct UnitPriceCalculatorView: View {
                 Button(action: {
                     errorMessage = nil
                     calculateUnitPrice()
+                    focused.wrappedValue = false
+                    
                 }, label: {
                     Text("計算する")
                 })
@@ -112,14 +114,14 @@ struct UnitPriceCalculatorView: View {
             } // VStack
            
         } //ZStack
-        .toolbar {
+  /*      .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
                 Button("閉じる") {
                     focused.wrappedValue = false
                 }
             }
-        } // toolbar
+        } // toolbar */
         
     } // body
             
