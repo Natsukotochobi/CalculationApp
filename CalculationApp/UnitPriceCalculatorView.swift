@@ -40,95 +40,102 @@ struct UnitPriceCalculatorView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color(red: 0.75, green: 1.0, blue: 0.8, opacity: 0.6)
-                .ignoresSafeArea()
+        GeometryReader { geometry in
+            ZStack {
+                Color(red: 0.75, green: 1.0, blue: 0.8, opacity: 0.6)
+                    .ignoresSafeArea()
+                
+                ScrollView {
+                    VStack {
+                        
+                        Image(systemName: "cart")
+                            .resizable(resizingMode: .stretch)
+                            .frame(width: 120.0, height: 120.0)
+                            .padding(.bottom, 70.0)
+                            .foregroundColor(.green)
+                        
+                        Text("単価計算します")
+                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        
+                        HStack {
+                            Text("合計金額：").padding(.horizontal, 0)
+                            TextField("0", text: $totalPrice)
+                                .focused(focused.projectedValue, equals: true)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .keyboardType(.numberPad)
+                                .frame(width: 100)
+                            
+                        } // HStack
+                        .frame(width: 200)
+                        
+                        HStack {
+                            Text("個数：").padding(.horizontal,0)
+                            TextField("0", text: $quantity)
+                                .focused(focused.projectedValue, equals: true)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .keyboardType(.numberPad)
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                            
+                        } // HStack
+                        .frame(width: 200)
+                        
+                        Button(action: {
+                            totalPrice = ""
+                            quantity = ""
+                            unitPrice = 0
+                            errorMessage = nil
+                        }, label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable(resizingMode: .stretch)
+                                .frame(width: 15.0, height: 15.0)
+                                .foregroundColor(.red)
+                        })
+                        
+                        Button(action: {
+                            errorMessage = nil
+                            calculateUnitPrice()
+                            focused.wrappedValue = false
+                            
+                        }, label: {
+                            Text("計算する")
+                        })
+                        .buttonStyle(RoundedButtonStyle())
+                        .padding()
+                        
+                        if let errorMessage = errorMessage {
+                            Text(errorMessage)
+                                .font(.title3)
+                                .padding(.horizontal,0)
+                                .foregroundColor(.red)
+                        } else {
+                            Text("1個：\(unitPrice)円")
+                                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                .padding(.horizontal,0)
+                        }
+                        
+                    } // VStack
+                    .padding(.top, 50)
+                    .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+                } // ScrollView
+                .scrollDismissesKeyboard(.immediately)
+            } //ZStack
             
-            VStack {
-                
-                Image(systemName: "cart")
-                    .resizable(resizingMode: .stretch)
-                    .frame(width: 120.0, height: 120.0)
-                    .padding(.bottom, 70.0)
-                    .foregroundColor(.green)
-                
-                Text("単価計算します")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                
-                HStack {
-                    Text("合計金額：").padding(.horizontal, 0)
-                    TextField("0", text: $totalPrice)
-                        .focused(focused.projectedValue, equals: true)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.numberPad)
-                        .frame(width: 100)
-                        
-                } // HStack
-                .frame(width: 200)
-                
-                HStack {
-                    Text("個数：").padding(.horizontal,0)
-                    TextField("0", text: $quantity)
-                        .focused(focused.projectedValue, equals: true)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.numberPad)
-                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                        
-                } // HStack
-                .frame(width: 200)
-                
-                Button(action: {
-                    totalPrice = ""
-                    quantity = ""
-                    unitPrice = 0
-                    errorMessage = nil
-                }, label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .resizable(resizingMode: .stretch)
-                        .frame(width: 15.0, height: 15.0)
-                        .foregroundColor(.red)
-                })
-                
-                Button(action: {
-                    errorMessage = nil
-                    calculateUnitPrice()
-                    focused.wrappedValue = false
-                    
-                }, label: {
-                    Text("計算する")
-                })
-                .buttonStyle(RoundedButtonStyle())
-                .padding()
-                
-                if let errorMessage = errorMessage {
-                    Text(errorMessage)
-                        .font(.title3)
-                        .padding(.horizontal,0)
-                        .foregroundColor(.red)
-                } else {
-                    Text("1個：\(unitPrice)円")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .padding(.horizontal,0)
-                }
-                
-            } // VStack
-           
-        } //ZStack
-  /*      .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("閉じる") {
-                    focused.wrappedValue = false
-                }
-            }
-        } // toolbar */
-        
+            /*  .toolbar {
+             ToolbarItemGroup(placement: .keyboard) {
+             Spacer()
+             Button("閉じる") {
+             focused.wrappedValue = false
+             }
+             }
+             } // toolbar */
+            
+        } // GeometryReader
     } // body
-            
-  
+    
+    
     
 } // UnitPriceCalculatorView
 
 /* #Preview {
-    UnitPriceCalculatorView()
-} */
+ UnitPriceCalculatorView()
+ } */

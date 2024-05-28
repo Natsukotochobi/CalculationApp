@@ -36,92 +36,95 @@ struct TaxCalculatorView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color(red: 0.55, green: 0.9, blue: 0.9, opacity: 0.6)
-                .ignoresSafeArea()
-            
-            VStack {
-                Image(systemName: "percent")
-                    .resizable(resizingMode: .stretch)
-                    .frame(width: 110.0, height: 110.0)
-                    .padding(.bottom, 70.0)
-                    .foregroundColor(.blue)
+        GeometryReader { geometry in
+            ZStack {
+                Color(red: 0.55, green: 0.9, blue: 0.9, opacity: 0.6)
+                    .ignoresSafeArea()
                 
-                Text("税込金額を計算します")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                
-                HStack {
-                    Text("税抜：").padding(.horizontal, 0)
-                    TextField("0", text: $withoutTax)
-                        .focused(focused.projectedValue, equals: true)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.numberPad)
-                        .frame(width: 100)
-                 
-                    Button(action: {
-                        withoutTax = ""
-                        taxIncluded = 0
-                        errorMessage = nil
-                    }, label: {
-                        Image(systemName: "xmark.circle.fill")
+                ScrollView {
+                    VStack {
+                        Image(systemName: "percent")
                             .resizable(resizingMode: .stretch)
-                            .frame(width: 15.0, height: 15.0)
-                            .foregroundColor(.red)
-                    })
-                } // HStack
-                .frame(width: 200)
-                .padding()
-                
-                
-                
-                HStack {
-                    Button(action: {
-                        errorMessage = nil
-                        calculateTax(1.08)
-                        focused.wrappedValue = false
-                    }, label: {
-                        Text("8%")
-                    })
-                    .buttonStyle(RoundedButtonStyle())
-                    
-                    Button(action: {
-                        errorMessage = nil
-                        calculateTax(1.10)
-                        focused.wrappedValue = false
-                    }, label: {
-                        Text("10%")
-                    })
-                    .buttonStyle(RoundedButtonStyle())
-                    
-                } // HStack
-                .padding()
-                
-                if let errorMessage = errorMessage {
-                    Text(errorMessage)
-                        .font(.title3)
-                        .padding(.horizontal,0)
-                        .foregroundColor(.red)
-                    
-                } else {
-                    Text("税込：\(taxIncluded)円")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .padding(.horizontal,0)
-                }
-                
-                    
-                
-            } // VStack
+                            .frame(width: 110.0, height: 110.0)
+                            .padding(.bottom, 70.0)
+                            .foregroundColor(.blue)
+                        
+                        Text("税込金額を計算します")
+                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        
+                        HStack {
+                            Text("税抜：").padding(.horizontal, 0)
+                            TextField("0", text: $withoutTax)
+                                .focused(focused.projectedValue, equals: true)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .keyboardType(.numberPad)
+                                .frame(width: 100)
+                            
+                            Button(action: {
+                                withoutTax = ""
+                                taxIncluded = 0
+                                errorMessage = nil
+                            }, label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .resizable(resizingMode: .stretch)
+                                    .frame(width: 15.0, height: 15.0)
+                                    .foregroundColor(.red)
+                            })
+                        } // HStack
+                        .frame(width: 200)
+                        .padding()
+                        
+                        HStack {
+                            Button(action: {
+                                errorMessage = nil
+                                calculateTax(1.08)
+                                focused.wrappedValue = false
+                            }, label: {
+                                Text("8%")
+                            })
+                            .buttonStyle(RoundedButtonStyle())
+                            
+                            Button(action: {
+                                errorMessage = nil
+                                calculateTax(1.10)
+                                focused.wrappedValue = false
+                            }, label: {
+                                Text("10%")
+                            })
+                            .buttonStyle(RoundedButtonStyle())
+                            
+                        } // HStack
+                        .padding()
+                        
+                        if let errorMessage = errorMessage {
+                            Text(errorMessage)
+                                .font(.title3)
+                                .padding(.horizontal,0)
+                                .foregroundColor(.red)
+                            
+                        } else {
+                            Text("税込：\(taxIncluded)円")
+                                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                .padding(.horizontal,0)
+                        }
+                    } // VStack
+                    .padding(.top, 50)
+                    .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+                } // ScrollView
+                .scrollDismissesKeyboard(.immediately)
+            } //ZStack
             
-        } //ZStack
-     /*   .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("閉じる") {
-                    focused.wrappedValue = false
-                }
-            }
-        } // toolbar */
-        
+            
+            /*   .toolbar {
+             ToolbarItemGroup(placement: .keyboard) {
+             Spacer()
+             Button("閉じる") {
+             focused.wrappedValue = false
+             }
+             }
+             } // toolbar */
+            
+        } // GeometryReader
     } // body
 } // TaxCalculatorView
 
@@ -137,6 +140,6 @@ struct RoundedButtonStyle: ButtonStyle {
 }
 
 /* #Preview {
-    TaxCalculatorView()
-} */
+ TaxCalculatorView()
+ } */
 
