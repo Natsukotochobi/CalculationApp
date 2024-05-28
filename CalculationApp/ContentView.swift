@@ -18,24 +18,15 @@ struct ContentView: View {
                 .tabItem {
                     Label("税金計算", systemImage: "percent")
                 }.tag(1)
-    //            .focused($isInputActive)
             
             UnitPriceCalculatorView(focused: $focused)
                 .tabItem {
                     Label("単価計算", systemImage: "cart")
                 }.tag(2)
-    //            .focused($isInputActive)
+            
         } // TabView
-  /*      .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("Done") {
-                    focused = false
-                }
-            }
-        } // toolbar */
-    } // body閉じる
-} // ContentView閉じる
+    } // body
+} // ContentView
 
 #Preview {
     ContentView()

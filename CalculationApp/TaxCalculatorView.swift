@@ -113,17 +113,6 @@ struct TaxCalculatorView: View {
                 } // ScrollView
                 .scrollDismissesKeyboard(.immediately)
             } //ZStack
-            
-            
-            /*   .toolbar {
-             ToolbarItemGroup(placement: .keyboard) {
-             Spacer()
-             Button("閉じる") {
-             focused.wrappedValue = false
-             }
-             }
-             } // toolbar */
-            
         } // GeometryReader
     } // body
 } // TaxCalculatorView
