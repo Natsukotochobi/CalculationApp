@@ -41,14 +41,15 @@
 ## 動画
 #### 1. 税込計算
 
-![taxViewUsing](https://github.com/Natsukotochobi/CalculationApp/assets/105856391/17b14c92-8e53-4650-ae9c-154d05a8f76b)
+![taxUsing2](https://github.com/Natsukotochobi/CalculationApp/assets/105856391/f3eff1d7-3e4e-4906-a9bb-f33df9fda11a)
 
 #### 2. 単価計算
 
-![unitPriceUsing](https://github.com/Natsukotochobi/CalculationApp/assets/105856391/4d9dd857-a2df-41fe-9748-285b20cc5d8d)
+![unitPriceUsing4](https://github.com/Natsukotochobi/CalculationApp/assets/105856391/6680e709-e667-445b-81bc-f4c14af8fc94)
 
 ---
 
 ## 開発したきっかけ
 Swiftの本を１冊終えたので、学んだ知識を使って自分でアプリを作ってみることにした。<br>
 何か生活が便利になるものを作りたいと思い、買い物をするときに、暗算が苦手な自分がよく電卓で計算するものを二つピックアップした。
+
